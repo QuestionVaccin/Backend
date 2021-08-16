@@ -16,7 +16,7 @@ class DoctorSheet(object):
 
     def close_ticket(self, ticket_id):
         cell = self.tickets.find(ticket_id)
-        user_id = self.api.get_direct_message(self.tickets.row_values(cell.row)[1])
+        user_id = self.tickets.row_values(cell.row)[1]
         self.api.send_direct_message(recipient_id=user_id, text="""
 Nous espérons avoir répondu à toutes vos questions. N'hésitez pas à partager votre expérience en mentionnant @QuestionVaccin !
 """)
