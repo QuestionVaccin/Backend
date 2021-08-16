@@ -16,12 +16,12 @@ class DoctorSheet(object):
 
     def close_ticket(self, ticket_id):
         cell = self.tickets.find(ticket_id)
-        message = self.api.get_direct_message(self.tickets.row_values(cell.row)[0])
-        user_id = message.message_create['sender_id']
-        self.api.send_direct_message(recipient_id=user_id, text="""Merci d'avoir posé votre question, nous esperons vous avoir aidé. N'hésitez pas à donner votre avis en mentionnant le bot @QuestionVaccin
-        """)
+        user_id = self.api.get_direct_message(self.tickets.row_values(cell.row)[1])
+        self.api.send_direct_message(recipient_id=user_id, text="""
+Nous espérons avoir répondu à toutes vos questions. N'hésitez pas à partager votre expérience en mentionnant @QuestionVaccin !
+""")
 
         try:
-            self.tickets.update_cell(cell.row, 6, "TRUE")
+            self.tickets.update_cell(cell.row, 7, "TRUE")
         except Exception as e:
             logging.exception("An exception has been raised for ticket " + ticket_id + ", exception: " + str(e))
