@@ -28,7 +28,6 @@ def hello_world():
     dSheet = DoctorSheet()
     dSheet.close_ticket(request.args.get('ticket_uuid'))
     return """"<script>
-    window.open(document.URL,'_self','resizable=no,top=-245,width=250,height=250,scrollbars=no');
     window.close();
     </script>"""
 
