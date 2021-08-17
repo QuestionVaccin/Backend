@@ -19,6 +19,7 @@ class DoctorSheet(object):
         row = self.tickets.row_values(cell.row)
         user_id = row[1]
         closed = row[6]
+        print(closed)
         if closed == "TRUE":
             print("Already closed")
         if closed == "FALSE":
