@@ -18,7 +18,7 @@ class DoctorSheet(object):
         cell = self.tickets.find(ticket_id)
         row = self.tickets.row_values(cell.row)
         user_id = row[1]
-        closed = row[7]
+        closed = row[6]
         if closed == "FALSE":
             print("not already closed")
             #self.api.send_direct_message(recipient_id=user_id, text="""
