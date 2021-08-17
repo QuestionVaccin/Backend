@@ -19,14 +19,10 @@ class DoctorSheet(object):
         row = self.tickets.row_values(cell.row)
         user_id = row[1]
         closed = row[6]
-        print(closed)
-        if closed == "TRUE":
-            print("Already closed")
         if closed == "FALSE":
-            print("not already closed")
-            #self.api.send_direct_message(recipient_id=user_id, text="""
-            #Nous espérons avoir répondu à toutes vos questions. N'hésitez pas à partager votre expérience en mentionnant @QuestionVaccin !
-            #""")
+            self.api.send_direct_message(recipient_id=user_id, text="""
+            Nous espérons avoir répondu à toutes vos questions. N'hésitez pas à partager votre expérience en mentionnant @QuestionVaccin !
+            """)
 
         try:
             self.tickets.update_cell(cell.row, 7, "TRUE")
