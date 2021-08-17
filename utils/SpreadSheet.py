@@ -16,10 +16,14 @@ class DoctorSheet(object):
 
     def close_ticket(self, ticket_id):
         cell = self.tickets.find(ticket_id)
-        user_id = self.tickets.row_values(cell.row)[1]
-        self.api.send_direct_message(recipient_id=user_id, text="""
-Nous espérons avoir répondu à toutes vos questions. N'hésitez pas à partager votre expérience en mentionnant @QuestionVaccin !
-""")
+        row = self.tickets.row_values(cell.row)
+        user_id = row[1]
+        closed = row[7]
+        if closed == "FALSE":
+            print("not already closed")
+            #self.api.send_direct_message(recipient_id=user_id, text="""
+            #Nous espérons avoir répondu à toutes vos questions. N'hésitez pas à partager votre expérience en mentionnant @QuestionVaccin !
+            #""")
 
         try:
             self.tickets.update_cell(cell.row, 7, "TRUE")
