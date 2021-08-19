@@ -1,9 +1,11 @@
-from flask import Flask, request
-from utils.SpreadSheet import DoctorSheet
-import sentry_sdk
-from sentry_sdk.integrations.flask import FlaskIntegration
 import logging
+import sentry_sdk
+
+from sentry_sdk.integrations.flask import FlaskIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
+from flask import Flask, request, redirect
+
+from utils.SpreadSheet import DoctorSheet
 from utils.credentials import SENTRY_URL
 
 
@@ -24,10 +26,8 @@ sentry_sdk.init(
 @app.route('/close_ticket')
 def hello_world():
     dSheet = DoctorSheet()
-    dSheet.close_ticket(request.args.get('ticket_uuid'))
-    return """"<script>
-    window.close();
-    </script>"""
+    user_id = dSheet.close_ticket(request.args.get('ticket_uuid'))
+    return redirect(f'https://twitter.com/messages/compose?recipient_id={user_id}')
 
 
 if __name__ == '__main__':
