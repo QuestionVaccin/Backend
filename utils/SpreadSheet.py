@@ -28,3 +28,5 @@ class DoctorSheet(object):
             self.tickets.update_cell(cell.row, 7, "TRUE")
         except Exception as e:
             logging.exception("An exception has been raised for ticket " + ticket_id + ", exception: " + str(e))
+
+        return user_id
