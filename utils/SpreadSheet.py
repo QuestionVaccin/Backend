@@ -20,9 +20,10 @@ class DoctorSheet(object):
         user_id = row[1]
         closed = row[6]
         if closed == "FALSE":
-            self.api.send_direct_message(recipient_id=user_id, text="""
-            Nous espérons avoir répondu à toutes vos questions. N'hésitez pas à partager votre expérience en mentionnant @QuestionVaccin !
-            """)
+            pass
+            # self.api.send_direct_message(recipient_id=user_id, text="""
+            # Nous espérons avoir répondu à toutes vos questions. N'hésitez pas à partager votre expérience en mentionnant @QuestionVaccin !
+            # """)
 
         try:
             self.tickets.update_cell(cell.row, 7, "TRUE")
