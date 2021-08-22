@@ -29,6 +29,11 @@ def hello_world():
     user_id = dSheet.close_ticket(request.args.get('ticket_uuid'))
     return redirect(f'https://twitter.com/messages/compose?recipient_id={user_id}')
 
+@app.route('/fuck-afk')
+def hello():
+    dSheet = DoctorSheet()
+    dSheet.afk()
+    return "OK"
 
 if __name__ == '__main__':
     app.run()

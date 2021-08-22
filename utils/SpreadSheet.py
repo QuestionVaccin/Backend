@@ -1,3 +1,4 @@
+import datetime
 import logging
 
 import gspread
@@ -29,5 +30,13 @@ class DoctorSheet(object):
             self.tickets.update_cell(cell.row, 7, "TRUE")
         except Exception as e:
             logging.exception("An exception has been raised for ticket " + ticket_id + ", exception: " + str(e))
-
         return user_id
+
+    def afk(self):
+        cells = self.tickets.findall("FALSE", in_column=7)
+        print(cells)
+        for cell in cells:
+            diff = datetime.datetime.now() - datetime.datetime.fromisoformat(self.tickets.cell(cell.row, 3).value)
+            if diff.days > 2:
+                pass
+                # Set doctor to AFK, send message to new doctor
