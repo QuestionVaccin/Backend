@@ -23,10 +23,13 @@ sentry_sdk.init(
     traces_sample_rate=1.0
 )
 
+
 @app.route('/close_ticket')
 def hello_world():
     dSheet = DoctorSheet()
     user_id = dSheet.close_ticket(request.args.get('ticket_uuid'))
+    if request.user_agent.platform in ['ipad', 'iphone']:
+        return redirect(f'twitter://messages/compose?recipient_id={user_id}')
     return redirect(f'https://twitter.com/messages/compose?recipient_id={user_id}')
 
 
